@@ -1,0 +1,55 @@
+.hero {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 60px;
+    gap: 20px;
+    font-family: 'sora', 'sans-serif';
+}
+
+.content {
+    flex: 1;
+    padding: 55px;
+}
+
+.content .para {
+    color: #69a71f;
+    margin-bottom: 10px;
+    background: transparent;
+    font-size: x-large;
+}
+
+.content .description {
+    margin-top: 15px;
+    color: #65696f;
+    background: transparent;
+}
+
+.content h1 {
+    font-size: 90px;
+}
+
+.content3 {
+    flex: 1;
+    display: flex;
+    border-radius: 20px;
+    background-image: url('./assets/ghg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-width: 314px; /* Set the minimum width for .content3 */
+}
+
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column; /* Stack vertically on mobile */
+        align-items: center;
+        padding: 0;
+    }
+
+    .content3 {
+        min-width: 314px; /* Maintain a minimum width of 314px on smaller screens */
+        background-position: center;
+        padding: 0; /* Remove padding on mobile */
+    }
+}
+

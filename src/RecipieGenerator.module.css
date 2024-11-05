@@ -1,0 +1,514 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: whitesmoke;
+    font-family: 'Sora', sans-serif;
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    padding: 50px;
+    justify-content: space-evenly;
+    
+    gap: 20px;
+    background-color: #0a4435;
+}
+
+.header {
+    width: 25%; /* Increased to make it more adaptive */
+    min-width: 280px; /* Minimum width to prevent shrinking too much */
+    height: max-content;
+    background-color: transparent;
+    padding-top: 30px;
+    /* Centering for better readability on smaller screens */
+}
+
+.heading {
+    font-size: 50px; /* Reduced size for better readability on various screens */
+    margin-bottom: 20px;
+    color: white;
+    background-color: transparent;
+}
+
+.containerimg {
+    width: 45%; /* Adjusted width for larger screens */
+    max-width: 600px; /* Set max width to prevent excessive stretching */
+    height: auto;
+    border-radius: 10px;
+}
+
+.containerimg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.para {
+    font-size: 17px;
+    color: #b8c1af;
+    background-color: transparent;
+}
+
+/* Media query for screens narrower than 768px */
+@media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .header {
+        padding-top: 20px;
+        width: 80%;
+         /* Full width on smaller screens */
+    }
+
+    .heading {
+        font-size: 36px; /* Reduced font size for mobile */
+    }
+
+    .containerimg {
+        margin-top: 40px;
+        width: 90%; /* Full width on smaller screens */
+        max-width: none;
+    }
+
+    .para {
+         /* Center-align text on smaller screens */
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 300px) {
+    .containerimg {
+        display: none;
+    }
+    .main {
+        overflow: hidden; /* hides overflow */
+        padding: 0;
+    }
+    .header h1{
+        font-size: 18px;
+    }
+    .para{
+        font-size: 5px;
+    }
+}
+@media (max-width: 240px) {
+    .containerimg {
+        display: none;
+    }
+    .main {
+        overflow: hidden; /* hides overflow */
+        padding: 0;
+    }
+    .header h1{
+        font-size: 8px;
+    }
+    .para{
+        font-size: 1px;
+    }
+}
+
+
+/*--------------------------------------------------------INPUT FIELD-------------------------------------------------*/
+
+/* Main Container for Input Form */
+.input {
+    margin-top: 50px;
+    background-image: linear-gradient(45deg, #0a4335, #69a71f ,#ffa300);
+    padding: 60px;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Form Container */
+.forminput {
+    width: 60%;
+    background-color: white;
+    padding: 40px;
+    height: fit-content;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+   
+}
+
+.forminput h3 {
+    color: #0a4335;
+    margin-bottom: 20px;
+    font-size: 22px;
+    text-align: center;
+    background-color: transparent;
+}
+/* Ingredient Input Container */
+.inputcontainer {
+    /*display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 10px auto;
+    border-radius: 10px;
+    border: 2px solid #69a71f;
+    overflow: hidden;
+    background-color: transparent;*/
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-around;
+}
+
+.inputconatinerr {
+    width: 80%;
+    height: 50px;
+    padding: 20px;
+    border: none;
+    outline: none;
+    color: #333;
+    
+    border-radius: 5px;
+    background-color: transparent;
+    border: 2px solid #ffa300;
+
+}
+
+.search {
+    padding: 10px;
+    font-size: 20px;
+    color: white;
+    background-color: #0a4335;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dropdown Container */
+.dropdownContainer {
+   background-color: transparent;
+    margin: 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.dropdownLabel {
+    padding-top: 10px;
+    font-size: 16px;
+    color: #0a4335;
+    background-color: transparent;
+}
+
+.dietSelect {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #ffa300;
+    outline: none;
+    font-size: 16px;
+    color: #0a4335;
+    width: 60%;
+    background-color: transparent;
+}
+
+/* Search Button */
+.btn{
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+}
+.searchBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 20px;
+    color: white;
+    background-color: #69a71f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.searchBtn:hover {
+    background-color: #558c1a;
+}
+
+
+/* Results Section Container */
+.resultcontainer {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f7f8f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* List styling */
+.resultcontainer ul {
+    background-color: #f7f8f9;
+    margin-top: 20px;
+    list-style-type: none;
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.innerdiv{
+    background-color: white;
+}
+/* Each Recipe Item Card */
+.resultcontainer li {
+    background-color: white;
+    border-radius: 10px;
+    width: 250px;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    transition: border 0.0s ease;
+    cursor: pointer;
+}
+
+.resultcontainer li:hover {
+    transform: scale(1.05);
+    border: 2px solid #ffa300;
+}
+
+/* Recipe Title */
+.resultcontainer h3 {
+    font-size: 18px;
+    color: #0a4335;
+    background-color: white;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Recipe Image */
+.resultcontainer img {
+    margin-top: 10px;
+    background-color: white;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+
+
+@media (max-width : 1075px){
+    .forminput {
+        width: 80%;
+        background-color: white;
+        padding: 40px;
+        height: fit-content;
+        border-radius: 10px;
+        position: relative;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+       
+    }
+}
+@media (max-width : 742px){
+    .input {
+        margin-top: 50px;
+        background-image: linear-gradient(45deg, #0a4335, #69a71f);
+        padding: 20px;
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    .forminput {
+        width: 90%;
+        background-color: white;
+        padding-left: 40px;
+        padding-right: 40px;
+        height: fit-content;
+        border-radius: 10px;
+        position: relative;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+       
+    }
+    .inputconatiner{
+        width: 120%;
+       
+    }
+    .inputconatinerr {
+        width: 100%;
+        height: 50px;
+        padding: 5px;
+        text-overflow: ellipsis;
+        font-size: 0.5 rem;
+        border: none;
+        outline: none;
+        color: #333;
+        border-radius: 5px;
+        background-color: transparent;
+        border: 2px solid #ffa300;
+    
+    }
+}
+
+
+/* Heading Styles */
+.header h1 span {
+    color: #ffa300;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.header h1 span:hover {
+    color: #69a71f;
+}
+
+/* Loading and Error Message Styling */
+/* Loading, Error, and Empty State */
+.resultcontainerr {
+    background-color: #f7f8f9; /* Light background for the container */
+    margin-top: 20px; /* Spacing above the container */
+    padding: 30px; /* Padding inside the container */
+    width: 100%; /* Full width */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center align child elements */
+    gap: 20px; /* Space between child elements */
+    box-sizing: border-box; /* Include padding in width calculations */
+}
+
+/* Media queries for responsive adjustments */
+@media (min-width: 768px) {
+    .resultcontainerr {
+        flex-direction: row; /* Change to row layout on larger screens */
+        justify-content: center; /* Center child elements */
+        flex-wrap: wrap; /* Allow wrapping of child elements */
+    }
+}
+
+.messageContainer {
+    display: flex; /* Flexbox layout for message container */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    height: 80px; /* Fixed height */
+    text-align: center; /* Center text */
+    color: #0a4435; /* Text color */
+    background-color: transparent; /* Transparent background */
+    font-size: 1.5rem; /* Font size */
+    padding: 20px; /* Inner padding */
+    border-radius: 10px; /* Rounded corners */
+    background-color: transparent;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Loading Animation */
+.loadingSpinner {
+    border: 5px solid #f3f3f3; /* Light grey border */
+    border-top: 5px solid #69a71f; /* Green top border */
+    border-radius: 50%; /* Circular shape */
+    width: 40px; /* Width of spinner */
+    height: 40px; /* Height of spinner */
+    animation: spin 1s linear infinite; /* Animation */
+    margin-right: 15px; /* Space to the right of the spinner */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); } /* Start position */
+    100% { transform: rotate(360deg); } /* End position */
+}
+
+.loadingText, .errorText, .emptyText {
+    color: #0a4435; /* Text color */
+    font-size: 1.2rem; /* Font size */
+}
+
+.instructionContainer {
+    background-color: #e9f5e3; /* Light greenish background for contrast */
+    padding: 15px; /* Padding for spacing */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    color: #0a4335; /* Dark green text color */
+    max-width: 600px; /* Max width for readability */
+    width: 100%; /* Full width on smaller screens */
+   
+}
+
+.instructionContainer h2 {
+    font-size: 24px; /* Larger font for headings */
+    margin-bottom: 10px; /* Space below the heading */
+    color: #69a71f; /* Highlighted color for heading */
+    background-color: transparent;
+}
+
+.instructionContainer a {
+    background-color: transparent !important;
+    color: blue; /* Transparent background */
+}
+
+.instructionContainer a:visited {
+    color: black !important; /* Color for visited links */
+}
+
+.instructionContainer h3 {
+    font-size: 20px; /* Subheading size */
+    margin: 15px 0 5px; /* Margin for spacing */
+    color: #0a4435; /* Subheading color */
+    background-color: transparent;
+}
+
+.instructionContainer p {
+    font-size: 16px; /* Font size for text */
+    line-height: 1.5; /* Better readability */
+    color: #333; /* Dark text color */
+    background-color: transparent; /* Transparent background */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .instructionContainer {
+        padding: 15px; /* Slightly less padding on smaller screens */
+    }
+
+    .instructionContainer h2 {
+        font-size: 20px; /* Smaller heading size */
+    }
+
+    .instructionContainer h3 {
+        font-size: 18px; /* Smaller subheading size */
+    }
+
+    .instructionContainer p {
+        font-size: 14px; /* Smaller paragraph size */
+    }
+}
+@media(max-width : 500px){
+    .resultcontainerr{
+        width:100vw;
+        padding: 0;
+        position: relative;
+        left: 5px;
+
+    }
+    .instructionContainer {
+        padding: 0px; /* Padding for spacing */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        color: #0a4335; /* Dark green text color */
+        width: 100vw;
+        font-size: 0.4rem;
+    }
+   
+}
+
+
+
+

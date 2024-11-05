@@ -1,0 +1,219 @@
+/* SearchBar.module.css */
+
+.searchContainer {
+    position: relative;
+    top: 100px;
+    padding: 20px;
+    background-color: #f7f8f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+}
+
+.searchForm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.searchInput {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.cardcontainer {
+    background-color: #f7f8f9;
+    margin-top: 20px;
+    list-style-type: none;
+    padding: 0;
+    /* Remove default padding */
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow wrapping of cards */
+    gap: 20px;
+    /* Space between cards */
+    justify-content: center;
+    /* Center cards in the container */
+}
+
+/* Styles for individual recipe cards */
+.recipeCard {
+    background-color: white;
+    border-radius: 10px;
+    width: 250px;
+    /* Fixed width for consistency */
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    /* Prevent overflow */
+    display: flex;
+    flex-direction: column;
+    /* Stack image and title vertically */
+    align-items: center;
+    /* Center align items */
+    cursor: pointer;
+}
+
+
+.selected {
+    border: 2px solid blue;
+}
+
+/* Recipe Image */
+.recipeImage {
+    width: 100%;
+    /* Make image fill the card */
+    height: auto;
+    /* Maintain aspect ratio */
+    object-fit: cover;
+    /* Cover the space, maintaining aspect ratio */
+    border-radius: 8px;
+    /* Round corners of the image */
+}
+
+/* Recipe Title */
+.recipeTitle {
+    font-size: 18px;
+    color: #0a4335;
+    margin: 10px 0;
+    /* Spacing around title */
+    text-align: center;
+    /* Center title */
+}
+
+/* Hover Effect */
+.recipeCard:hover {
+    transform: scale(1.05);
+    /* Slight zoom on hover */
+}
+
+.searchButton {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #69a71f;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.searchButton:hover {
+    background-color: #5b9216;
+}
+
+.errorText {
+    color: red;
+}
+
+/* Styles for instruction container */
+.instructionContainer {
+    margin-top: 20px;
+    /* Add some spacing above */
+    padding: 15px;
+    background-color: #e9f5e3;
+    /* Background color to differentiate */
+    border-radius: 10px;
+    /* Rounded corners for the container */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    /* Shadow for depth */
+}
+
+/* Anchor link styles */
+
+.instructionContainer a {
+    background-color: transparent;
+    color: blue;
+    /* Transparent background */
+}
+
+.instructionContainer a:visited {
+    color: black;
+    /* Color for visited links */
+}
+
+.sourceLink:hover {
+    text-decoration: underline;
+    /* Underline on hover */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.messageContainer {
+    display: flex;
+    /* Flexbox layout for message container */
+    align-items: center;
+    /* Center content vertically */
+    justify-content: center;
+    /* Center content horizontally */
+    height: 80px;
+    /* Fixed height */
+    text-align: center;
+    /* Center text */
+    color: #0a4435;
+    /* Text color */
+    background-color: transparent;
+    /* Transparent background */
+    font-size: 1.5rem;
+    /* Font size */
+    padding: 20px;
+    /* Inner padding */
+    border-radius: 10px;
+    /* Rounded corners */
+    background-color: transparent;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+}
+
+/* Loading Animation */
+.loadingSpinner {
+    border: 5px solid #f3f3f3;
+    /* Light grey border */
+    border-top: 5px solid #69a71f;
+    /* Green top border */
+    border-radius: 50%;
+    /* Circular shape */
+    width: 40px;
+    /* Width of spinner */
+    height: 40px;
+    /* Height of spinner */
+    animation: spin 1s linear infinite;
+    /* Animation */
+    margin-right: 15px;
+    /* Space to the right of the spinner */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    /* Start position */
+    100% {
+        transform: rotate(360deg);
+    }
+
+    /* End position */
+}

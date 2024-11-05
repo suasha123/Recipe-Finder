@@ -1,0 +1,106 @@
+.container {
+    padding: 40px; /* Consistent padding around container */
+    background-color: whitesmoke;
+    font-family: 'Sora', sans-serif;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #0a4435;
+    gap: 20px;
+    position: relative;
+}
+
+.containerimg {
+    width: 40%; /* Adjust width for larger screens */
+  /*  max-width: 400px; /* Set max width to prevent stretching */
+    height: auto; /* Auto height to maintain aspect ratio */
+    position: relative;
+    border-radius: 10px;
+}
+
+.containerimg img {
+    width: 100%; /* Make image responsive */
+    height: 100%;
+    object-fit:cover;
+    border-radius: 10px; /* Optional: rounding corners for style */
+}
+
+.containeritem {
+    background-color: transparent;
+    padding: 20px;
+    width: 450px; /* Limiting width for readability on large screens */
+}
+
+.containeritem .para {
+    background-color: transparent;
+    margin-top: 15px;
+    color: #ffa300;
+    margin-bottom: 40px;
+}
+
+.containeritem h3 {
+    color: white;
+    background-color: transparent;
+    font-size: 28px; /* Reduce font size slightly for readability */
+    margin-bottom: 40px;
+}
+
+.containeritem button {
+    height: 50px;
+    width: 150px;
+    background-color: #69a71f;
+    color: white;
+    border: none;
+    font-size: 15px;
+    margin-top: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.para2 {
+    background-color: transparent;
+    margin-top: 40px;
+    color: rgb(184, 193, 175);
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px; /* Ensure padding is consistent on smaller screens */
+    }
+
+    .containerimg {
+        width: 100%; /* Full width on smaller screens */
+        height: auto; /* Maintain aspect ratio */
+    }
+    .containerimg img {
+        padding: 0;
+        width: 100%; /* Make image responsive */
+        height: 100%;
+        object-fit:cover;
+        border-radius: 10px; /* Optional: rounding corners for style */
+    }
+    .containeritem {
+        width: 100%;
+        max-width: 400px;
+        text-align: center; /* Center text for better readability */
+        padding: 20px; /* Consistent padding */
+    }
+    .containeritem .para{
+        margin-bottom: 20px;
+    }
+    .containeritem h3 {
+        font-size: 24px;
+        margin-bottom: 20px; /* Slightly smaller for mobile */
+    }
+    .containeritem .para2{
+        margin-top: 20px;
+    }
+    .containeritem button {
+        margin-top: 20px;
+        width: 100%; /* Full width for buttons on mobile */
+    }
+    
+}
