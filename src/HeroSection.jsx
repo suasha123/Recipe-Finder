@@ -5,7 +5,7 @@ export const Hero = ({ onClick }) => {
     <div className={styles.hero}>
       <div className={styles.content}>
         <p className={styles.para}>WELCOME TO TASTE QUEST</p>
-        <h1>
+        <h1 style={{color : "black"}}>
           Fuel{" "}
           <span style={{ color: "#ffa300", background: "transparent" }}>
             your
