@@ -78,6 +78,7 @@ export const SearchBar = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className={styles.searchInput}
+          style={{color : "black"}}
         />
         <button type="submit" className={styles.searchButton}>
           Search
