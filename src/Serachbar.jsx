@@ -6,7 +6,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 // Register chart components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const API_KEY = "a9b985ad75274dc98997edab264cdbd5";
+const API_KEY = "2828c2d05dc048a0aecdacdae235ea9a";
 const BASE_URL = "https://api.spoonacular.com/recipes/complexSearch";
 
 export const SearchBar = () => {

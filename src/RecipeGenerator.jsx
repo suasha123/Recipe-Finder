@@ -27,7 +27,7 @@ export const RecipieGenerator = () => {
 
   function apiKey() {
     setHasFetched(true);
-    const apiKey = "a9b985ad75274dc98997edab264cdbd5";
+    const apiKey = "2828c2d05dc048a0aecdacdae235ea9a";
     const ingredients = input.replace(/\s+/g, ",");
     const diet = option;
     const url = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${ingredients}${

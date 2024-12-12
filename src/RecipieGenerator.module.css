@@ -549,4 +549,99 @@
   .sourceLink:hover {
     text-decoration: underline;
   }
+  /* Saved Recipes Container */
+/* Saved Recipes Container */
+.savedRecipesContainer {
+    margin-top: 20px;
+  }
+  
+  .savedRecipeItem {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    color: black;
+  }
+  
+  .savedRecipeItem h3 {
+    font-size: 1.2rem;
+  }
+  
+  .savedRecipeItem a {
+    color: #1e90ff;
+    text-decoration: none;
+  }
+  
+  .savedRecipeItem a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Save Recipe Button */
+  .saveButton {
+    padding: 10px 20px;
+    background-color: #69a71f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  .saveButton:hover {
+    background-color: #528a1f;
+  }
+  
+  /* Clear Saved Recipes Button */
+  .clearButton {
+    padding: 10px 20px;
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+  }
+  
+  .clearButton:hover {
+    background-color: #b71c1c;
+  }
+  
+  /* Saved Recipe Message */
+  .savedMessage {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    text-align: center;
+  }
+  
+  .messageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .loadingSpinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #528a1f;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .errorText {
+    color: #d32f2f;
+    font-size: 18px;
+  }
+  
+  .loadingText {
+    font-size: 18px;
+    color: #3498db;
+  }
   

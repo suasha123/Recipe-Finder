@@ -13,20 +13,27 @@ export const Result = ({ data }) => {
   const [nutrition, setNutrition] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [saved, setSaved] = useState(false);
+  const [savedRecipes, setSavedRecipes] = useState([]);
+  const [selectedRecipeTitle, setSelectedRecipeTitle] = useState(""); // New state to hold the selected recipe title
   const resultRef = useRef(null);
 
-  const apiKey = "a9b985ad75274dc98997edab264cdbd5";
+  const apiKey = "2828c2d05dc048a0aecdacdae235ea9a";
 
-  const viewRecipe = (id) => {
+  // Fetch recipe details and nutrition info
+  const viewRecipe = (id, title) => {
     setInstruct("");
     setSummary("");
     setSourceUrl("");
     setNutrition([]);
     setError("");
     setLoading(true);
+    setSaved(false); // Reset saved state
+    setSelectedRecipeTitle(title); // Store the title when the recipe card is clicked
 
     const recipeUrl = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`;
     const nutritionUrl = `https://api.spoonacular.com/recipes/${id}/nutritionWidget.json?apiKey=${apiKey}`;
+
     fetch(recipeUrl)
       .then((response) => {
         if (!response.ok) {
@@ -35,12 +42,8 @@ export const Result = ({ data }) => {
         return response.json();
       })
       .then((details) => {
-        setInstruct(
-          details.instructions?.replace(/<\/?[^>]+(>|$)/g, "") || "No instructions found."
-        );
-        setSummary(
-          details.summary?.replace(/<\/?[^>]+(>|$)/g, "") || "No summary found."
-        );
+        setInstruct(details.instructions?.replace(/<\/?[^>]+(>|$)/g, "") || "No instructions found.");
+        setSummary(details.summary?.replace(/<\/?[^>]+(>|$)/g, "") || "No summary found.");
         setSourceUrl(details.sourceUrl || "No source URL available.");
       })
       .catch((err) => {
@@ -49,7 +52,6 @@ export const Result = ({ data }) => {
         setLoading(false);
       });
 
-    // Fetch the nutrition data
     fetch(nutritionUrl)
       .then((response) => {
         if (!response.ok) {
@@ -69,13 +71,43 @@ export const Result = ({ data }) => {
       });
   };
 
+  // Function to save the recipe to localStorage
+  const saveRecipe = () => {
+    const recipeData = {
+      title: selectedRecipeTitle, // Use the selected title here
+      instruction,
+      summary,
+      sourceUrl,
+      nutrition,
+    };
+    const savedRecipes = JSON.parse(localStorage.getItem("savedRecipes")) || [];
+    savedRecipes.push(recipeData);
+    localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
+    setSaved(true); // Update saved state to show confirmation
+    loadSavedRecipes(); // Reload saved recipes after saving
+  };
+
+  // Function to load saved recipes from localStorage
+  const loadSavedRecipes = () => {
+    const savedRecipes = JSON.parse(localStorage.getItem("savedRecipes")) || [];
+    setSavedRecipes(savedRecipes); // Update state with saved recipes
+  };
+
+  // Function to clear saved recipes from localStorage
+  const clearSavedRecipes = () => {
+    localStorage.removeItem("savedRecipes");
+    setSavedRecipes([]);
+    setSaved(false);
+  };
+
   useEffect(() => {
+    // Load saved recipes when component mounts
+    loadSavedRecipes();
     if (loading || instruction || error) {
       resultRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [loading, instruction, error]);
 
-  // Chart data for the nutrition donut chart
   const chartData = {
     labels: nutrition.map((item) => item.name),
     datasets: [
@@ -98,7 +130,7 @@ export const Result = ({ data }) => {
       </h1>
       <ul>
         {data.map((element, index) => (
-          <li key={index} onClick={() => viewRecipe(element.id)}>
+          <li key={index} onClick={() => viewRecipe(element.id, element.title)}>
             <div className={styles.innerdiv}>
               <h3>{element.title}</h3>
               <img src={element.image} alt={element.title} />
@@ -106,6 +138,28 @@ export const Result = ({ data }) => {
           </li>
         ))}
       </ul>
+
+      {/* Saved Recipes Section */}
+      <h2 style={{color : "black"}}>Saved Recipes:</h2>
+      <div className={styles.savedRecipesContainer}>
+        {savedRecipes.length > 0 ? (
+          <ul>
+            {savedRecipes.map((recipe, index) => (
+              <li key={index} className={styles.savedRecipeItem} style={{backgroundColor : "#69a71f"}}>
+                <h3>{recipe.title}</h3>
+                <p style={{backgroundColor : "transparent"}}>{recipe.summary}</p>
+                <a href={recipe.sourceUrl} style={{backgroundColor : "#ffa300" , display : "inline-block" , marginTop : "10px", textDecoration : "none" , color : "white"}}  target="_blank" rel="noopener noreferrer">
+                  View Source
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p style={{color : "#ffa300" , position : "relative" , bottom : "15px"}}>No saved recipes.</p>
+        )}
+      </div>
+
+      {/* Recipe Details Section */}
       {(instruction || summary || loading || error) && (
         <div ref={resultRef} className={styles.resultcontainerr}>
           {loading ? (
@@ -167,6 +221,22 @@ export const Result = ({ data }) => {
                   {sourceUrl}
                 </a>
               </p>
+
+              {/* Save Recipe Button */}
+              <button onClick={saveRecipe} className={styles.saveButton}>
+                Save Recipe
+              </button>
+
+              {/* Clear Recipe Button */}
+              <button onClick={clearSavedRecipes} className={styles.clearButton}>
+                Clear Saved Recipes
+              </button>
+
+              {saved && (
+                <div className={styles.savedMessage}>
+                  Recipe saved successfully!
+                </div>
+              )}
             </div>
           )}
         </div>
