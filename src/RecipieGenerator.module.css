@@ -512,3 +512,41 @@
 
 
 
+/* Add these styles to your RecipieGenerator.module.css */
+.nutritionTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #f8f8f8; /* Light background for better contrast */
+    color: #333; /* Dark text color for readability */
+  }
+  
+  .nutritionTable th,
+  .nutritionTable td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .nutritionTable th {
+    background-color: #69a71f; /* Dark green background for header */
+    color: white; /* White text in the header */
+  }
+  
+  .nutritionTable tr:nth-child(even) {
+    background-color: #f1f1f1; /* Lighter alternating rows */
+  }
+  
+  .nutritionTable tr:hover {
+    background-color: #e0e0e0; /* Slightly darker row on hover */
+  }
+  
+  .sourceLink {
+    color: #1976D2; /* Blue color for the source link */
+    text-decoration: none;
+  }
+  
+  .sourceLink:hover {
+    text-decoration: underline;
+  }
+  

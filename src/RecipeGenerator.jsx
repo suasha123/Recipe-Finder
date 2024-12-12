@@ -33,10 +33,8 @@ export const RecipieGenerator = () => {
     const url = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${ingredients}${
       diet ? `&diet=${diet}` : ""
     }`;
-
     setIsLoading(true);
     setError("");
-
     fetch(url)
       .then((response) => {
         if (!response.ok) {

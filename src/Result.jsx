@@ -1,10 +1,16 @@
 import { useEffect, useState, useRef } from "react";
 import styles from "./RecipieGenerator.module.css";
+import { Doughnut } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+
+// Registering Chart.js elements
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const Result = ({ data }) => {
   const [instruction, setInstruct] = useState("");
   const [summary, setSummary] = useState("");
   const [sourceUrl, setSourceUrl] = useState("");
+  const [nutrition, setNutrition] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const resultRef = useRef(null);
@@ -12,42 +18,55 @@ export const Result = ({ data }) => {
   const apiKey = "a9b985ad75274dc98997edab264cdbd5";
 
   const viewRecipe = (id) => {
-    // Clear previous states
     setInstruct("");
     setSummary("");
     setSourceUrl("");
+    setNutrition([]);
     setError("");
     setLoading(true);
 
-    const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`;
-
-    // Fetch the recipe details
-    fetch(url)
+    const recipeUrl = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`;
+    const nutritionUrl = `https://api.spoonacular.com/recipes/${id}/nutritionWidget.json?apiKey=${apiKey}`;
+    fetch(recipeUrl)
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error("Error fetching recipe details.");
         }
         return response.json();
       })
       .then((details) => {
         setInstruct(
-          details.instructions.replace(/<\/?[^>]+(>|$)/g, "") ||
-            "No instructions found."
+          details.instructions?.replace(/<\/?[^>]+(>|$)/g, "") || "No instructions found."
         );
         setSummary(
-          details.summary.replace(/<\/?[^>]+(>|$)/g, "") || "No summary found."
-        ); // Handle null summary
-        setSourceUrl(details.sourceUrl || "No source URL available."); // Handle null source URL
-        setLoading(false); // Stop loading after fetching
-        // Scroll to the instructions after loading
+          details.summary?.replace(/<\/?[^>]+(>|$)/g, "") || "No summary found."
+        );
+        setSourceUrl(details.sourceUrl || "No source URL available.");
       })
       .catch((err) => {
-        console.error("Fetch error:", err);
-        setLoading(false); // Stop loading on error
-        setError("Error loading content");
+        console.error("Error fetching recipe details:", err);
+        setError("Failed to load recipe details.");
+        setLoading(false);
       });
 
-    // Scroll to the loading message when starting the fetch
+    // Fetch the nutrition data
+    fetch(nutritionUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error fetching nutrition data.");
+        }
+        return response.json();
+      })
+      .then((nutritionData) => {
+        setNutrition(nutritionData.nutrients || []);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching nutrition data:", err);
+        setNutrition([]);
+        setError("Failed to load nutrition data.");
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -55,6 +74,22 @@ export const Result = ({ data }) => {
       resultRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [loading, instruction, error]);
+
+  // Chart data for the nutrition donut chart
+  const chartData = {
+    labels: nutrition.map((item) => item.name),
+    datasets: [
+      {
+        data: nutrition.map((item) => item.amount),
+        backgroundColor: [
+          "#D32F2F", "#1976D2", "#388E3C", "#FBC02D", "#8E24AA", "#0288D1",
+        ],
+        hoverBackgroundColor: [
+          "#C2185B", "#1565C0", "#2C6A3B", "#F57F17", "#7B1FA2", "#0277BD",
+        ],
+      },
+    ],
+  };
 
   return (
     <section className={styles.resultcontainer}>
@@ -88,6 +123,39 @@ export const Result = ({ data }) => {
               <p>{instruction}</p>
               <h3>Summary:</h3>
               <p>{summary}</p>
+
+              {/* Doughnut Chart */}
+              <div className={styles.chartContainer}>
+                <Doughnut data={chartData} options={{ responsive: true }} />
+              </div>
+
+              {/* Nutritional Information Table */}
+              <h3>Nutritional Information:</h3>
+              <table className={styles.nutritionTable}>
+                <thead>
+                  <tr>
+                    <th>Nutrition</th>
+                    <th>Amount</th>
+                    <th>Unit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {nutrition.length > 0 ? (
+                    nutrition.map((item, index) => (
+                      <tr key={index}>
+                        <td style={{color : "black"}}>{item.name}</td>
+                        <td style={{color : "black"}}>{item.amount}</td>
+                        <td style={{color : "black"}}>{item.unit}</td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="3">No nutrition information available.</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+
               <h3>Source:</h3>
               <p>
                 <a
